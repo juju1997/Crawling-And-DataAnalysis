@@ -1,0 +1,37 @@
+시작 계기 : 
+과연 복권은 랜덤일까? 그렇다면 초창기를 제외하고 이월되는 수령액이 왜 없을까?
+
+공식 정보 :
+당첨 확률 = 8,145,060 분의 1
+
+시작 문제점 :
+크롤링하는 사이트가 제일 최신의 당첨번호는 img형식이라 크롤링 불가 -> 직적 코드 수정후 입력
+crawling/CrawlingAndSave 클래스의 53~58 수정
+
+제작과정 : 
+1. 모든 번호 select (2020-5-10)
+2. 숫자별로 같은 숫자는 몇번 씩?
+3. 과연 한번도 안나온 숫자가 있을까?
+4. 규칙이 존재할까?
+5. 기간별 숫자의 분포도는 어떻게 될까?
+
+
+
+DB script : 
+CREATE TABLE lotto(
+	no number primary key,
+	a number,
+	b number,
+	c number,
+	d number,
+	e number,
+	f number);
+
+
+Class 및 Method설명 : 
+domain/Numbers : 당첨번호를 저장할 VO
+crawling/DbConnection.getConnection() : DB에 접속한다. ( ReturnValue - Connection )
+crawling/CrawlingAndSave-execute : DB에 모든 당첨번호를 저장한다. ( Return x)
+dataAnalysis/SelectAll.selectAll() : 모든 당첨번호를 리스트에 도메인으로 저장한다. ( ReturnValue - List<VO> )
+
+
